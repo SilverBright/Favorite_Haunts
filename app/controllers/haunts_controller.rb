@@ -4,6 +4,10 @@ class HauntsController < ApplicationController
 
 	def index
 		@haunts = Haunt.all
+		respond_to do |f|
+			f.html { render :index }
+			f.json { render json: @haunts }	
+		end
 	end
 
 	def california
@@ -17,7 +21,6 @@ class HauntsController < ApplicationController
 
 	def show
 		@haunt = Haunt.find(params[:id])
-		# render json: @haunt, status: 200
 		respond_to do |f|
 			f.html { render :show }
 			f.json { render json: @haunt }	
@@ -25,59 +28,49 @@ class HauntsController < ApplicationController
 	end
 
 	def create
-
-		####### DEVISE SOLUTION FOR USER & CURRENT USER #############
 		@haunt = current_user.haunts.build(haunt_params.merge(user_id: current_user.id))
 		if @haunt.save
-			flash[:notice] = "Success!!"
-			redirect_to haunt_path(@haunt)
+			# flash[:notice] = "Success!!"
+			# redirect_to haunt_path(@haunt)
+		respond_to do |f|
+			f.html { redirect_to haunt_path(@haunt) }
+			f.json { render json: @haunts }	
 		else
 			render :new
 		end
 	end
 
 	def edit 
+		respond_to do |f|
+			f.html { render :edit }
+			f.json { render json: @haunt }	
+		end
 		# @haunt = Haunt.find(params[:id])
 		#  if @haunt && @haunt.user == current_user
 			
 		#  else
-  #   		flash[:notice] = "Foolish mortal. You can only edit your own entries!"
-  #   		redirect_to haunts_path
-  #   	 end
+  			# flash[:notice] = "Foolish mortal. You can only edit your own entries!"
+  			# redirect_to haunts_path
+  		# end
 	end
 
 	def update
-		# @haunt = Haunt.find(params[:id])
-		 # if @haunt && @haunt.user == current_user
-			@haunt.update(haunt_params)
-			# flash[:notice] = "Success!"
-			redirect_to haunts_path
-		# else
-			# flash[:notice] = "Foolish mortal. You can only edit your own entries!"
-			# redirect_to haunts_path
-		# end
+		@haunt.update(haunt_params)
+		redirect_to haunts_path
 	end
 
 	def destroy
-	 	# @haunt = Haunt.find(params[:id])
-	 	# if @haunt && @haunt.user == current_user
-    		@haunt.destroy
-    		# flash[:notice] = "Success!"
-    		redirect_to haunts_path
-    	# else
-    		# flash[:notice] = "Foolish mortal. You can only delete your own entries!"
-    		# redirect_to haunts_path
-    	# end
+    	@haunt.destroy
+    	redirect_to haunts_path
   	end
 
 
 	private
 
-	# create a method for flash messages to use in the before_action method
+
 	def user_permissions
 		@haunt = Haunt.find(params[:id])
 		if @haunt && @haunt.user == current_user
-			# flash[:notice] = "Success!"
 		else
 			flash[:notice] = "Foolish mortal. You can only edit or delete your own entries!"
 			redirect_to haunts_path
