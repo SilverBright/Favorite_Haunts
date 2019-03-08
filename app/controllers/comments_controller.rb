@@ -2,19 +2,9 @@ class CommentsController < ApplicationController
 
 	def create
 		@haunt = Haunt.find(params[:haunt_id])
-
-		########### MOHAMMAD'S COMMENT.CONTENT & USER.EMAIL SOLUTION: ###########
 		@comment = current_user.comments.create(content: comment_params["content"], haunt_id: @haunt.id)
-
-		########### JENN'S ALTERNATE TO MOHAMMAD'S SOLUTION: ###########
-		# @comment = current_user.comments.build(comment_params)
-		# @comment.haunt = @haunt
-		# @comment.save #(returns a value of true if saved)
-
 		if	@comment.save  
 			flash[:notice] = "Success!!"
-
-			########### TYLER'S 'SHOW HAUNT & COMMENT' SOLUTION: ###########
 			redirect_to haunt_comment_path(@haunt, @comment)
 		else
 			render :new
