@@ -17,6 +17,7 @@ class HauntsController < ApplicationController
 
 	def show
 		@haunt = Haunt.find(params[:id])
+		render json: @haunt, status: 200
 	end
 
 	def create
