@@ -13,6 +13,11 @@ class CommentsController < ApplicationController
 
 	def index
 		@haunt = Haunt.find(params[:haunt_id])
+		@comments = Comment.all
+			respond_to do |f|
+				f.html {render :index} 
+				f.json {render json: @comments}
+			end
 	end
 
 	def new
@@ -23,6 +28,10 @@ class CommentsController < ApplicationController
   	def show
   		@haunt = Haunt.find(params[:haunt_id])
   		@comment = Comment.find(params[:id])
+  		respond_to do |f|
+			f.html {render :show} 
+			f.json {render json: @comment}
+		end
   	end
 
   	def edit 

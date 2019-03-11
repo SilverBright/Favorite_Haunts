@@ -35,6 +35,7 @@ class HauntsController < ApplicationController
 		respond_to do |f|
 			f.html { redirect_to haunt_path(@haunt) }
 			f.json { render json: @haunts }	
+			end
 		else
 			render :new
 		end
