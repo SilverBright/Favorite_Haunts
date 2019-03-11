@@ -1,1 +1,4 @@
-console.log('haunts.js is loaded')
+$(function () {
+	console.log('haunts.js is loaded')
+});
+

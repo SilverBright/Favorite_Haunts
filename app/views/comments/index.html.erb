@@ -1,3 +1,5 @@
+
+
 <h3>Welcome: <%= current_user.email %> </h3>
 
 <h1>User Reviews</h1>
@@ -31,14 +33,12 @@
   <%= link_to 'Add A Review', new_haunt_comment_path(@haunt) %>
 
   <tbody>
-    <section id="comments-section" 
       <% @haunt.comments.each do |comment| %>
         <tr>
           <td><strong><%= comment.user.email %></strong> says: <i><%= comment.content %></i>  </td>
         <% end %> 
       </tr>
   </tbody>
-</section>
 </table>
 
 
