@@ -12,9 +12,9 @@
       <th>Description</th>
       <th colspan="3"></th>
     </tr>
-  </thead> -->
+  </thead>
 
-  <!-- tbody>
+  tbody>
     <% @haunts.each do |haunt| %>
       <tr>
         <td><%= haunt.name %></td> 
@@ -39,6 +39,12 @@
 <p>
   <%= link_to "Load Haunts", haunts_path, :class => "ajax_load_haunts" %>
 </p>
+
+<div class="haunts">
+  <h3></h3>
+
+</div>
+
 
 <!--       <button id='haunts-data'>Get Haunts AJAX Request</button>
       <div id='ajax-haunts-data'>[haunts...]</div>
