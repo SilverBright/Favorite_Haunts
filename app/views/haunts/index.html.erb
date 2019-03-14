@@ -2,22 +2,26 @@
 
 <h1>Haunt Directory</h1>
 
+<!-- LIST OF HAUNTS IN JSON -->
+
+<h3>AJAX RESPONSE</h3>
+<p>
+  <%= link_to "Load Haunts", haunts_path, class: "ajax_load_haunts" %>
+</p>
 
 
-<!-- <!DOCTYPE html>
-<html>
-<body>
+<div class="haunts"></div>
 
-<div id="demo">
-  <h2>Let AJAX change this text</h2>
-  <button type="button" onclick="loadDoc()">Change Content</button>
-</div>
-
-</body>
-</html> -->
+</br>
 
 
-<!-- <table>
+<hr>
+
+<h3>ORIGINAL HTML</h3>
+
+<line></line>
+
+<table>
   <%#= link_to 'See Haunts only in California', california_haunts_path %>
   <thead>
     <tr>
@@ -29,7 +33,7 @@
     </tr>
   </thead>
 
-  tbody>
+  <tbody>
     <% @haunts.each do |haunt| %>
       <tr>
         <td><%= haunt.name %></td> 
@@ -40,7 +44,7 @@
         <td><%= link_to 'See Reviews', haunt_comments_path(haunt)  %></td>
         <td><%= link_to 'Add A Review', new_haunt_comment_path(haunt) %></td>
 
-        Hide edit and destroy options from other users' haunts
+        <!-- Hide edit and destroy options from other users' haunts -->
 
         <% if haunt && haunt.user == current_user %>
 
@@ -49,18 +53,12 @@
         <% end %>
       </tr>
     <% end %> 
-  </tbody> -->
-
-
-<h3>AJAX RESPONSE</h3>
-<p>
-  <%= link_to "Load Haunts", haunts_path, class: "ajax_load_haunts" %>
-
-</p>
-
-<div id="haunts-json">List of haunts here</div>
-
+  </tbody>
 </table> 
+
+
+
+
 
 
 

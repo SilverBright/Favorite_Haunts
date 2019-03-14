@@ -1,14 +1,30 @@
 $(document).ready(function(){
 	$("a.ajax_load_haunts").on("click", function(event){
-		event.preventDefault();
-	})
+		$.ajax({
+		method: 'GET',
+		url: this.href,
+		dataType: 'json'
+	}).done(function (response){
+		console.log("Here is the data:", response)
+		response.forEach(function(data){
+			$("div.haunts").append(
+				"<ul>" + "<b>" + data.name + "</b>" + ", " + data.city + ", " + data.state + "<br>" + data.description + "<ul>");
+			
+		});
+
+		// $("div.haunts").html(response)
+		// $("div.haunts").append('<ol><li>First Haunt</li></ol>');
+		
+
+
+
+	});
+	event.preventDefault();
 })
 
-$.ajax({
-	method: 'GET',
-	url: this.href,
-	dataType: 'json'
-}).done(function (response){
-	console.log("the response is:", response )
-	// $("div.haunts-json").append(response)
+
+	
+
+	
 })
+
