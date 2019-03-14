@@ -10,13 +10,13 @@ $(document).ready(function(){
 		response.forEach(function(data){
 			$("div.haunts").append(
 				"<ul>" + "<b>" + data.name + "</b>" + ", " + data.city + ", " + data.state + "<br>" + data.description +"<ul>");
+		
 		data.comments.forEach(function(comment){
 			$("div.haunts").append(
-				"<ul><b> Review:</b> " + comment.content + "</ul>");
-		})
+				"<ul><b>A Reviewer Says: </b> " + "'" + comment.content + "'" + "</ul>" );
+				})
 			});
 		});
 	event.preventDefault();
 	})
 })
-
