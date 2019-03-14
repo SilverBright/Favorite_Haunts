@@ -2,6 +2,21 @@
 
 <h1>Haunt Directory</h1>
 
+
+
+<!-- <!DOCTYPE html>
+<html>
+<body>
+
+<div id="demo">
+  <h2>Let AJAX change this text</h2>
+  <button type="button" onclick="loadDoc()">Change Content</button>
+</div>
+
+</body>
+</html> -->
+
+
 <!-- <table>
   <%#= link_to 'See Haunts only in California', california_haunts_path %>
   <thead>
@@ -36,21 +51,16 @@
     <% end %> 
   </tbody> -->
 
+
+<h3>AJAX RESPONSE</h3>
 <p>
-  <%= link_to "Load Haunts", haunts_path, :class => "ajax_load_haunts" %>
+  <%= link_to "Load Haunts", haunts_path, class: "ajax_load_haunts" %>
+
 </p>
 
-<div class="haunts">
-  <h3></h3>
+<div id="haunts-json">List of haunts here</div>
 
-</div>
-
-
-<!--       <button id='haunts-data'>Get Haunts AJAX Request</button>
-      <div id='ajax-haunts-data'>[haunts...]</div>
-      <br> -->
-
-</table>
+</table> 
 
 
 
