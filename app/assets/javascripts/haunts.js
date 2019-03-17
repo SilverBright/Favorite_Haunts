@@ -5,7 +5,7 @@ $(document).ready(function(){
 		url: this.href,
 		dataType: 'json'
 	}).done(function (response){
-		console.log("Here is the response:", response)
+		console.log("Here is an array of Haunts:", response)
 		
 		response.forEach(function(data){
 			$("div.haunts").append(
@@ -20,3 +20,20 @@ $(document).ready(function(){
 	event.preventDefault();
 	})
 })
+
+
+// $(document).ready(function(){
+// 	$("a.ajax_load_a_haunt").on("click"), function(event){
+// 		$.ajax({
+// 			method: 'get',
+// 			url: this.href,
+// 			dataType: 'json'
+// 		}).done(function (response){
+// 			console.log("Here is a haunt:", response)
+
+// 		})
+// 		event.preventDefault();
+// 	}
+	
+// })
+

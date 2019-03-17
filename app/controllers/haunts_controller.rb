@@ -4,6 +4,7 @@ class HauntsController < ApplicationController
 
 	def index
 		@haunts = Haunt.all
+		# render json: @haunts
 		respond_to do |f|
 			f.html { render :index }
 			f.json { render json: @haunts }	
