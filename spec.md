@@ -1,6 +1,7 @@
 # Specifications for Project Assessment
 
 JavaScript Specs:
+
 - [x] Must have a Rails Backend and new requirements implemented through JavaScript.
 - [ ] Makes use of ES6 features as much as possible(e.g Arrow functions, Let & Const, Constructor Functions)
 - [ ] Must translate the JSON responses into Javascript Model Objects using either ES6 class or constructor syntax. 
@@ -10,7 +11,10 @@ JavaScript Specs:
 - [ ] Must use your Rails application to render a form for creating a resource that is submitted dynamically through JavaScript.
 - [ ] At least one of the JS Model Objects must have a method on the prototype.
 
+*********************************************************************************
+
 Rails Specs:
+
 - [x] Using Ruby on Rails for the project
 - [x] Include at least one has_many relationship (x has_many y e.g. User has_many Recipes) 
 - [x] Include at least one belongs_to relationship (x belongs_to y e.g. Post belongs_to User)

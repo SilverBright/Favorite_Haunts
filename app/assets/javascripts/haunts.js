@@ -22,18 +22,3 @@ $(document).ready(function(){
 })
 
 
-// $(document).ready(function(){
-// 	$("a.ajax_load_a_haunt").on("click"), function(event){
-// 		$.ajax({
-// 			method: 'get',
-// 			url: this.href,
-// 			dataType: 'json'
-// 		}).done(function (response){
-// 			console.log("Here is a haunt:", response)
-
-// 		})
-// 		event.preventDefault();
-// 	}
-	
-// })
-
