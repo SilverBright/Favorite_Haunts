@@ -5,12 +5,34 @@ Welcome to Haunted. This application is designed to allow users to add and comme
 ## USAGE
 
 You need Ruby and Rails installed on your system before beginning.
-Clone or download this repository and run 'bundle install'. 
-Run rake db:migrate to create database tables.
-Run rake db:seed to seed data for haunted locations & comments.
-Run rails s to preview the application in your web browser: http://localhost:3000/
+Clone or download this repository and run 
+
+```
+bundle install
+```
+
+Run 
+```
+rake db:migrate
+```
+to create database tables.
+
+Run
+
+```
+rake db:seed
+```
+to seed data for haunted locations & comments (if desired, not necessary).
+
+Run 
+```
+rails s 
+```
+to preview the application in your web browser: http://localhost:3000/
 
 You may use your Facebook account to login via OAuth, or you are welcome to sign up by using your email address to create a new account.
+
+Your email will be your username.
 
 After account creation and login, users can add and read haunted locations and comments.
 
@@ -18,8 +40,7 @@ Enjoy!
 
 ## Instructional Video
 
-A video will be provided near project completion. 
-
+A video will be provided at project completion. 
 
 ## Contributing
 
