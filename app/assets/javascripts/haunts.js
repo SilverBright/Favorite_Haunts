@@ -5,13 +5,13 @@ $(document).ready(function(){
 	listenForClick()
 })
 
-//Event listener for clicking on 'ajax_load_haunts'
+//Event listener for clicking on 'ajax_load_haunts' link
 // The ajax request is a 'promise' to return the data to you
 function listenForClick() {
 	$("a.ajax_load_haunts").on('click', function(event) {
 		// Stop the button from automatically clicking
 		event.preventDefault()
-		// Run the getHaunts ajax method below
+		// Run the getHaunts ajax function below
 		getHaunts()
 	})
 }
@@ -26,6 +26,8 @@ function getHaunts() {
 		// When ajax is 'done' returning the data to you, run a function on it
 	}).done(function (response) {
 		console.log("Here is the array of Haunts:", response)
+		let myHaunt = new Haunt(response[0]);
+		let myHauntHTML = myHaunt.postHTML()
 		
 		// Display all Haunts under "div.haunts" located on the haunts index page
 		response.forEach(function(data){
@@ -39,7 +41,6 @@ function getHaunts() {
 				})
 			});
 		});
-	// event.preventDefault();
 	}
 
 // Create an instance of a Haunt (JavaScript Object Model)
