@@ -8,7 +8,7 @@ $(document).ready(function(){
 //Event listener for clicking on 'ajax_load_haunts' link
 // The ajax request is a 'promise' to return the data to you
 function listenForClick() {
-	$('button#ajax-haunts').on('click', function(event) {
+	$('button#ajax-haunts-button').on('click', function(event) {
 		// Stop the button from automatically clicking
 		event.preventDefault()
 		// Run the getHaunts ajax function below
@@ -26,23 +26,29 @@ function getHaunts() {
 		// When ajax is 'done' returning the data to you, run a function on it
 	}).done(function (response) {
 		console.log("Here is the array of Haunts:", response)
-		let myHaunt = new Haunt(response[0]);
-		let myHauntHTML = myHaunt.hauntHTML()
-		document.getElementById('ajax-haunts').innerHTML
+		response.map(haunt => {
+			const newHaunt = new Haunt(haunt);
+			const newHauntHTML = newHaunt.hauntHTML()
+			document.getElementById('haunts').innerHTML += newHauntHTML
 
 		// Display all Haunts under "div.haunts"
-		response.forEach(function(data){
-			$("div.haunts").append(
-				"<ul>" + "<b>" + data.name + "</b>" + ", " + data.city + ", " + data.state + "<br>" + data.description +"<ul>");
+		// response.forEach(function(data){
+		// 	$("div.haunts").append(
+		// 		"<ul>" + "<b>" + data.name + "</b>" + ", " + data.city + ", " + data.state + "<br>" + data.description +"<ul>");
 		
-		// Display all the nested Comments for Haunts
-		data.comments.forEach(function(comment){
-			$("div.haunts").append(
-				"<ul><b>A Reviewer Says: </b> " + "'" + comment.content + "'" + "</ul>" );
+		// // Display all the nested Comments for Haunts
+		// data.comments.forEach(function(comment){
+		// 	$("div.haunts").append(
+		// 		"<ul><b>A Reviewer Says: </b> " + "'" + comment.content + "'" + "</ul>" );
+				
 				})
+
 			});
-		});
-	}
+		}
+	// 	});
+
+	// }
+
 
 // Create an instance of a Haunt (JavaScript Object Model)
 class Haunt {
@@ -58,6 +64,13 @@ class Haunt {
 
 Haunt.prototype.hauntHTML = function() {
 	console.log(`Here is a Haunt: ${this.name}`);
+	// let hauntObjects = this.haunts.forEach(haunt => {
+		return (`
+			<div class='haunts'>
+			<h3>${this.name}</h3>
+		</div>
+			`)
+	// }) 
 };
 
 
