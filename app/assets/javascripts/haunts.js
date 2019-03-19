@@ -65,7 +65,7 @@ Haunt.prototype.hauntHTML = function() {
 	// console.log(`Here is a Haunt: ${this.name}`);
 	let hauntComments = this.comments.map(comment => {
 		return (`
-			<p><b>A reviewer said:</b> ${comment.content}</p>
+			<p><b>A reviewer said:</b> <i>${comment.content}</i></p>
 		`)
 	}).join('')
 	// console.log("Here is a Comment:", hauntComments )

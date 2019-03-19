@@ -21,6 +21,7 @@
 
     <% if user_signed_in? %>
 
+      <%= link_to "Home", root_path %> |
       <%= link_to "Edit profile", edit_user_registration_path %> |
       <%= link_to "Logout", destroy_user_session_path, method: :delete  %> | 
       <%= link_to "Add A Haunt", new_haunt_path %> |
