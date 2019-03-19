@@ -25,7 +25,8 @@ function getHaunts() {
 		dataType: 'json'
 		// When ajax is 'done' returning the data to you, run a function on it
 	}).done(function (response) {
-		console.log("Here is the array of Haunts:", response)
+		// console.log("Here is the array of Haunts:", response)
+		// loop through the response
 		response.map(haunt => {
 			const newHaunt = new Haunt(haunt);
 			const newHauntHTML = newHaunt.hauntHTML()
@@ -39,18 +40,15 @@ function getHaunts() {
 		// // Display all the nested Comments for Haunts
 		// data.comments.forEach(function(comment){
 		// 	$("div.haunts").append(
-		// 		"<ul><b>A Reviewer Says: </b> " + "'" + comment.content + "'" + "</ul>" );
-				
+		// 		"<ul><b>A Reviewer Says: </b> " + "'" + comment.content + "'" + "</ul>" );				
 				})
-
 			});
 		}
 	// 	});
+// }
 
-	// }
 
-
-// Create an instance of a Haunt (JavaScript Object Model)
+// Create an instance of a Haunt using a construtor function (JavaScript Object Model)
 class Haunt {
 	constructor(object) {
 		this.id = object.id
@@ -58,28 +56,28 @@ class Haunt {
 		this.description = object.description
 		this.city = object.city
 		this.state = object.state
+		this.comments = object.comments
 	}
 }
 
-
+// Create a prototype of a Haunt to use as many times as you need
 Haunt.prototype.hauntHTML = function() {
-	console.log(`Here is a Haunt: ${this.name}`);
-	// let hauntObjects = this.haunts.forEach(haunt => {
+	// console.log(`Here is a Haunt: ${this.name}`);
+	let hauntComments = this.comments.map(comment => {
+		return (`
+			<p><b>A reviewer said:</b> ${comment.content}</p>
+		`)
+	}).join('')
+	// console.log("Here is a Comment:", hauntComments )
 		return (`
 			<div class='haunts'>
 			<h3>${this.name}</h3>
+			<p>${this.city}, ${this.state}</p>
+			<p>${this.description}</p>
+			<ul>${hauntComments}</ul>
 		</div>
-			`)
-	// }) 
+	`) 
 };
-
-
-
-
-
-
-
-
 
 // Load the document
 // $(document).ready(function(){
