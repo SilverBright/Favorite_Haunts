@@ -24,7 +24,7 @@
       <%= link_to "Edit profile", edit_user_registration_path %> |
       <%= link_to "Logout", destroy_user_session_path, method: :delete  %> | 
       <%= link_to "Add A Haunt", new_haunt_path %> |
-      <%= link_to "See All The Haunts", haunts_path %> |
+      <%#= link_to "See All The Haunts", haunts_path %> |
       <%= link_to 'See Haunts only in California', california_haunts_path %>
     <% else %>
       <%= link_to "Sign up", new_user_registration_path  %> |
@@ -34,4 +34,16 @@
   <%= yield %>
 
   </body>
+
+<button id='ajax-add-haunt'>Add A Haunt</button>  
+<div class="add-haunts"></div>
+
+<button id='ajax-haunts'>See Haunts & Comments</button>  
+<div class="haunts"></div>
+
+
+
+<!-- <p><%#= link_to "See all the Haunts & Reviews!", haunts_path, class: "ajax_load_haunts" %></p> -->
+
+
 </html>
