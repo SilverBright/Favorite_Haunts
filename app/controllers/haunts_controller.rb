@@ -34,7 +34,7 @@ class HauntsController < ApplicationController
 			# flash[:notice] = "Success!!"
 			# redirect_to haunt_path(@haunt)
 		respond_to do |f|
-			f.html { redirect_to haunt_path(@haunt) }
+			f.html { redirect_to haunts_path }
 			f.json { render json: @haunts }	
 			end
 		else

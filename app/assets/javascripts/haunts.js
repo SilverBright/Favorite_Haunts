@@ -3,6 +3,7 @@ $(document).ready(() => {
 	console.log("The document is loaded and ready") 
 	console.log("The haunts.js file has loaded")
 	listenForClick()
+	listenForNewHauntFormClick()
 })
 
 //Event listener for clicking on 'display-ajax-haunts' link
@@ -61,6 +62,19 @@ class Haunt {
 		this.comments = haunt.comments
 
 	}
+
+	static newHauntForm = function() {
+	return (`
+		<strong>New Haunt Form</strong>
+			<form>
+				Name: <input id='haunt-name' type='text' name='name'></input><br>
+				Description: <input type='text' description='description'></input><br>
+				City: <input type='text' city='city'></input><br>
+				State: <input type='text' state='state'></input><br>
+				<input type='submit' />
+			</form>
+		`)
+	}
 }
 	
 
@@ -85,4 +99,16 @@ Haunt.prototype.hauntHTML = function() {
 	`) 
 
 };
+
+function listenForNewHauntFormClick() {
+	$('button#ajax-add-new-haunt-form').on('click', function (event) {
+		event.preventDefault()
+		let newHauntForm = Haunt.newHauntForm()
+		
+		document.querySelector('div#new-haunt').innerHTML = newHauntForm
+	})
+}
+
+
+
 
