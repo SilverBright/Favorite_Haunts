@@ -5,12 +5,14 @@ $(document).ready(() => {
 	listenForClick()
 })
 
-//Event listener for clicking on 'ajax_load_haunts' link
+//Event listener for clicking on 'display-ajax-haunts' link
 // The ajax request is a 'promise' to return the data to you
 function listenForClick() {
-	$('button#ajax-haunts-button').on('click', (event) => {
+	$('button#display-ajax-haunts').on('click', event => {
 		// Prevent the default function of the click event from happening
 		event.preventDefault()
+		// Display the ajax response on the haunts index page
+		history.pushState(null, null, "haunts")
 		// Run the getHaunts ajax function below
 		getHaunts()
 	})
@@ -23,10 +25,10 @@ function getHaunts() {
 		method: 'get',
 		dataType: 'json'
 		// When ajax is 'done' returning the data to you, run a function on it
-	}).done((response) => {
+	}).done( response => {
 		console.log("Here is the array of Haunts:", response)
 		// loop through the response
-		response.map(haunt => {
+		response.map( haunt => {
 			const newHaunt = new Haunt(haunt);
 			const newHauntHTML = newHaunt.hauntHTML()
 			document.getElementById('haunts').innerHTML += newHauntHTML
@@ -41,6 +43,7 @@ function getHaunts() {
 		// 	$("div.haunts").append(
 		// 		"<ul><b>A Reviewer Says: </b> " + "'" + comment.content + "'" + "</ul>" );				
 				})
+			console.log ("You are now on the HAUNTS#INDEX PAGE")
 			});
 		}
 	// 	});
@@ -49,13 +52,13 @@ function getHaunts() {
 
 // Create an instance of a Haunt using a construtor function (JavaScript Object Model)
 class Haunt {
-	constructor(object) {
-		this.id = object.id
-		this.name = object.name
-		this.description = object.description
-		this.city = object.city
-		this.state = object.state
-		this.comments = object.comments
+	constructor(haunt) {
+		this.id = haunt.id
+		this.name = haunt.name
+		this.description = haunt.description
+		this.city = haunt.city
+		this.state = haunt.state
+		this.comments = haunt.comments
 
 	}
 }
@@ -71,12 +74,15 @@ Haunt.prototype.hauntHTML = function() {
 		`)
 	}).join('')
 	// console.log("Here is a Comment:", hauntComments )
+	// Add a clickable <a href> with the .id of the haunt title that redirects to the show page
 		return (`
 			<div class='haunts'>
-			<h3>${this.name}</h3>
+			<a href="haunts/${this.id}"><h3>${this.name}</h3></a>
 			<p>${this.city}, ${this.state}</p>
 			<p>${this.description}</p>
 			<ul>${hauntComments}</ul>
 		</div>
 	`) 
+
 };
+
