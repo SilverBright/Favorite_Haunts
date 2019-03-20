@@ -1,9 +1,9 @@
-<h3>Welcome, <%= current_user.email %></h3>
+<!-- <h3>Welcome, <%= current_user.email %></h3> -->
 
 <!-- <ul>Would you like to...
 	<p></p>
-	<li><%= link_to "Add A Haunt", new_haunt_path %> </li>
-	<li><%= link_to "See All The Haunts", haunts_path %> </li>
+	<li><%#= link_to "Add A Haunt", new_haunt_path %> </li>
+	<li><%#= link_to "See All The Haunts", haunts_path %> </li>
 </ul> -->
 
 <!-- <p> Here is a list of all the haunts you've commented on so far:</p> -->
@@ -17,10 +17,10 @@
 
 	<body>
       	<tr>	
-			<% current_user.haunts.uniq.each do |haunt| %>
-			<td><b><%= haunt.name %></b></td>
+			<%# current_user.haunts.uniq.each do |haunt| %>
+			<td><b><%#= haunt.name %></b></td>
     	</tr>
-		<% end %>
+		<%# end %>
    </tbody>
 </table>
 <br> -->

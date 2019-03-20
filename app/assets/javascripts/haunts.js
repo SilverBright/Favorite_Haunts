@@ -1,5 +1,5 @@
 //Read and load the entire document first
-$(document).ready(function(){
+$(document).ready(() => {
 	console.log("The document is loaded and ready") 
 	console.log("The haunts.js file has loaded")
 	listenForClick()
@@ -8,8 +8,8 @@ $(document).ready(function(){
 //Event listener for clicking on 'ajax_load_haunts' link
 // The ajax request is a 'promise' to return the data to you
 function listenForClick() {
-	$('button#ajax-haunts-button').on('click', function(event) {
-		// Stop the button from automatically clicking
+	$('button#ajax-haunts-button').on('click', (event) => {
+		// Prevent the default function of the click event from happening
 		event.preventDefault()
 		// Run the getHaunts ajax function below
 		getHaunts()
@@ -20,12 +20,11 @@ function listenForClick() {
 function getHaunts() {
 	$.ajax({
 		url: 'http://localhost:3000/haunts',
-		// url: this.href,
 		method: 'get',
 		dataType: 'json'
 		// When ajax is 'done' returning the data to you, run a function on it
-	}).done(function (response) {
-		// console.log("Here is the array of Haunts:", response)
+	}).done((response) => {
+		console.log("Here is the array of Haunts:", response)
 		// loop through the response
 		response.map(haunt => {
 			const newHaunt = new Haunt(haunt);
@@ -57,8 +56,11 @@ class Haunt {
 		this.city = object.city
 		this.state = object.state
 		this.comments = object.comments
+
 	}
 }
+	
+
 
 // Create a prototype of a Haunt to use as many times as you need
 Haunt.prototype.hauntHTML = function() {
@@ -78,27 +80,3 @@ Haunt.prototype.hauntHTML = function() {
 		</div>
 	`) 
 };
-
-// Load the document
-// $(document).ready(function(){
-// 	$("a.ajax_load_haunts").on("click", function(event){
-// 		$.ajax({
-// 		method: 'GET',
-// 		url: this.href,
-// 		dataType: 'json'
-// 	}).done(function (response){
-// 		console.log("Here is an array of Haunts:", response)
-		
-// 		response.forEach(function(data){
-// 			$("div.haunts").append(
-// 				"<ul>" + "<b>" + data.name + "</b>" + ", " + data.city + ", " + data.state + "<br>" + data.description +"<ul>");
-		
-// 		data.comments.forEach(function(comment){
-// 			$("div.haunts").append(
-// 				"<ul><b>A Reviewer Says: </b> " + "'" + comment.content + "'" + "</ul>" );
-// 				})
-// 			});
-// 		});
-// 	event.preventDefault();
-// 	})
-// })
