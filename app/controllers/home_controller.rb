@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
 
-	def index
+def index
+		@haunts = Haunt.all
 	end
 
 end

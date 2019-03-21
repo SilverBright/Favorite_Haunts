@@ -4,9 +4,10 @@ class HauntsController < ApplicationController
 
 	def index
 		@haunts = Haunt.all
+		
 		# render json: @haunts
 		respond_to do |f|
-			f.html { render :index }
+			f.html { render :index, :layout => false }
 			f.json { render json: @haunts }	
 		end
 	end
@@ -18,9 +19,12 @@ class HauntsController < ApplicationController
 
 	def new
 		@haunt = current_user.haunts.build
+		# @haunts = current_user.haunts.build
 	end
 
 	def show
+
+		@haunts = current_user.haunts.build
 		@haunt = Haunt.find(params[:id])
 		respond_to do |f|
 			f.html { render :show }
@@ -29,16 +33,19 @@ class HauntsController < ApplicationController
 	end
 
 	def create
+		# @haunts = current_user.haunts.build(haunt_params.merge(user_id: current_user.id))
 		@haunt = current_user.haunts.build(haunt_params.merge(user_id: current_user.id))
 		if @haunt.save
+			redirect_to @haunt
+			# redirect_to "haunts/show"
 			# flash[:notice] = "Success!!"
 			# redirect_to haunt_path(@haunt)
-		respond_to do |f|
-			f.html { redirect_to haunts_path }
-			f.json { render json: @haunts }	
-			end
+		# respond_to do |f|
+		# 	f.html { redirect_to haunts_path }
+		# 	f.json { render json: @haunts }	
+			# end
 		else
-			render :new
+			render "haunts/show"
 		end
 	end
 
