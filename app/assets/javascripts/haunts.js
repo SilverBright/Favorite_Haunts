@@ -3,7 +3,8 @@ $(document).ready(() => {
 	console.log("The document is loaded and ready") 
 	console.log("The haunts.js file has loaded")
 	listenForClick()
-	listenForNewHauntFormClick()
+
+
 })
 
 //Event listener for clicking on 'display-ajax-haunts' link
@@ -100,44 +101,61 @@ Haunt.prototype.hauntHTML = function() {
 
 };
 
-function listenForNewHauntFormClick() {
-	$('button#ajax-add-new-haunt-form').on('click', function (event) {
-		// alert("You hit the submit button")
-		event.preventDefault()
-		let newHauntForm = Haunt.newHauntForm()		
-		document.querySelector('div#new-haunt').innerHTML = newHauntForm
-	})
-}
+// function listenForNewHauntFormClick() {
+// 	$('button#ajax-add-new-haunt-form').on('click', function (event) {
+// 		// alert("You hit the submit button")
+// 		event.preventDefault()
+// 		let newHauntForm = Haunt.newHauntForm()		
+// 		document.querySelector('div#new-haunt').innerHTML = newHauntForm
+// 	})
+// }
 
 // Submit Haunts via AJAX
 
-$(function(){
-	$(".new_haunt").on("submit", function(event) {
-		// alert("You clicked submit")
-		// console.log(this)
-		url = this.action
-		data = $(this).serialize();
-		// debugger
-		$.ajax({
-		type: 'post',
-		url: url,
-		data: data
-
-		}).done( response => {
-		debugger 
-			// response.forEach(function(data){
-
-			// $("div#ajax-haunts").append(
-				// "<ul>" + "<b>" + data.name + "</b>" + "</ul>")
-		// $("div#ajax-haunts").append(response).innerHTML
-		// document.querySelector("div#ajax-haunts").innerHTML
-				});
-		event.preventDefault()
-		})
+// $(function(){
+// 	$("new_haunt.new_haunt").on("submit", function(event) {
+// 		// alert("You clicked submit")
+// 		// console.log(this)
+// 		url = this.action
+// 		data = $(this).serialize();
 		
+// 		$.ajax({
+// 		type: 'post',
+// 		url: url,
+// 		data: data
+// 		success: function(response) {
+// 		debugger
+// 		})
+
+
+
+// function listenForNewPostFormClick() {
+// 	$("new_haunt.new_haunt").on('submit', function (event) {
+// 		event.preventDefault()
+// 		let newPostForm = Post.newPostForm()
+// 		// $('div#new-post-form-div')
+// 		document.querySelector('div#new-post-form-div').innerHTML = newPostForm
+
+$(function(){
+		$("new_haunt.new_haunt").on("submit", function(event) {
+		
+		$.ajax({
+			type: "POST",
+			url: this.action,
+			data: $(this).serialize(),
+			success: function(resp){
+			console.log(resp)
+
+			}
+			
+		})
+		event.preventDefault()
 	})
-	
-// })
+})
+
+
+
+
 
 
 

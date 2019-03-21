@@ -23,7 +23,6 @@ class HauntsController < ApplicationController
 	end
 
 	def show
-
 		@haunts = current_user.haunts.build
 		@haunt = Haunt.find(params[:id])
 		respond_to do |f|
@@ -33,19 +32,21 @@ class HauntsController < ApplicationController
 	end
 
 	def create
-		# @haunts = current_user.haunts.build(haunt_params.merge(user_id: current_user.id))
+		@haunts = current_user.haunts.build(haunt_params.merge(user_id: current_user.id))
 		@haunt = current_user.haunts.build(haunt_params.merge(user_id: current_user.id))
 		if @haunt.save
-			redirect_to @haunt
-			# redirect_to "haunts/show"
+			
+			render 'haunts/show', :layout => false
+			# redirect_to @haunt
+			# redirect_to "haunt/show"
 			# flash[:notice] = "Success!!"
 			# redirect_to haunt_path(@haunt)
 		# respond_to do |f|
 		# 	f.html { redirect_to haunts_path }
 		# 	f.json { render json: @haunts }	
 			# end
-		else
-			render "haunts/show"
+		# else
+			# render "haunts/show"
 		end
 	end
 
