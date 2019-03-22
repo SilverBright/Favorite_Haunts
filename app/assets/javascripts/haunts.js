@@ -33,24 +33,10 @@ function getHaunts() {
 		response.map( haunt => {
 			const newHaunt = new Haunt(haunt);
 			const newHauntHTML = newHaunt.hauntHTML()
-			document.getElementById('display-ajax-haunts').innerHTML += newHauntHTML
-
-		// Display all Haunts under "div.haunts"
-		// response.forEach(function(data){
-		// 	$("div.haunts").append(
-		// 		"<ul>" + "<b>" + data.name + "</b>" + ", " + data.city + ", " + data.state + "<br>" + data.description +"<ul>");
-		
-		// // Display all the nested Comments for Haunts
-		// data.comments.forEach(function(comment){
-		// 	$("div.haunts").append(
-		// 		"<ul><b>A Reviewer Says: </b> " + "'" + comment.content + "'" + "</ul>" );				
+			document.getElementById('display-ajax-haunts').innerHTML += newHauntHTML			
 				})
-			// console.log ("You are now on the HAUNTS#INDEX PAGE")
 			});
 		}
-	// 	});
-// }
-
 
 // Create an instance of a Haunt using a construtor function (JavaScript Object Model)
 class Haunt {
@@ -61,7 +47,6 @@ class Haunt {
 		this.city = haunt.city
 		this.state = haunt.state
 		this.comments = haunt.comments
-
 	}
 
 	// static newHauntForm = function() {
@@ -77,8 +62,6 @@ class Haunt {
 	// 	`)
 	// }
 }
-	
-
 
 // Create a prototype of a Haunt to use as many times as you need
 Haunt.prototype.hauntHTML = function() {
@@ -89,7 +72,6 @@ Haunt.prototype.hauntHTML = function() {
 		`)
 	}).join('')
 	// console.log("Here is a Comment:", hauntComments )
-	// Add a clickable <a href> with the .id of the haunt title that redirects to the show page
 		return (`
 			<div>
 				<ol>
@@ -104,84 +86,29 @@ Haunt.prototype.hauntHTML = function() {
 
 };
 
-// function listenForNewHauntFormClick() {
-// 	$('button#ajax-add-new-haunt-form').on('click', function (event) {
-// 		// alert("You hit the submit button")
-// 		event.preventDefault()
-// 		let newHauntForm = Haunt.newHauntForm()		
-// 		document.querySelector('div#new-haunt').innerHTML = newHauntForm
-// 	})
-// }
+// AJAX POST 
 
-// Submit Haunts via AJAX
-
-// $(function(){
-// 	$("new_haunt").on("submit", function(event) {
-// 		alert("You clicked submit")
-// 		console.log(this)		
-// 		$.ajax({
-// 		type: 'post',
-// 		url: url,
-// 		data: data
-// 		success: function(response) {
-// 		debugger
-// 		})
-
-
-
-// function listenForNewPostFormButton() {
-// 	$("button#add-new-ajax-haunt-form").on('click', function (event) {
-// 		event.preventDefault()
-// 		console.log("You hit the new form button")
-// 	})
-// }
-	
-// function listenForNewHauntFormClick() {
-// 	$('button#add-new-ajax-haunt-form').on('click', function (event) {
-// 		console.log('You clicked on the new haunt button to open the form')
-// 		event.preventDefault()
-// 		let newHauntForm = Haunt.newHauntForm()
-// 		document.querySelector('div#display-ajax-haunts').innerHTML += newHauntForm
-
-// 	})
-// }
-
-
-
-// $(document).ready(function() {
-//   $("#new_haunt.new_haunt").submit(function(event){  
-//        event.preventDefault();  
-//        console.log('submit button clicked')
-//     })  
-//   });
-
-
-
-function listenForSubmitButton() {
-	$("#new_haunt.new_haunt").submit(function(event){  
-       event.preventDefault();  
-       console.log('You clicked the submit button')
-    })  
-  };
-
-function postNewHauntForm() {
-	$("new_haunt.new_haunt").submit(function(event) {
+function listenForSubmitButton(){
+	$("#new_haunt.new_haunt").submit(function(event){
 		event.preventDefault();
 		console.log('You clicked the submit button')
-	
-		// $.ajax({
-		// 	type: "POST",
-		// 	url: this.action,
-		// 	data: $(this).serialize(),
-		// 	success: function(resp){
-		// 	console.log(resp)
-
-		// 	})
-		// 	}
+		postNewAjaxHaunt()
 		})
-		
-	};
+	}
 
+
+function postNewAjaxHaunt(){
+	$.ajax({
+		type: 'post',
+		url: this.action,
+		data: $(this).serialize(),
+		dataType: 'json'
+		}).done( response => {
+			debugger 
+			// console.log("you got a response")
+		}
+	)
+}
 
 $(document).on("click","#new-ajax-haunt", function(event){
   $("div#new_form").show()
@@ -190,6 +117,20 @@ $(document).on("click","#new-ajax-haunt", function(event){
 });
 
 
-
+// Display all Haunts under "div.haunts"
+		// response.forEach(function(data){
+		// 	$("div.haunts").append(
+		// 		"<ul>" + "<b>" + data.name + "</b>" + ", " + data.city + ", " + data.state + "<br>" + data.description +"<ul>");
+		
+		// // Display all the nested Comments for Haunts
+		// data.comments.forEach(function(comment){
+		// 	$("div.haunts").append(
+		// 		"<ul><b>A Reviewer Says: </b> " + "'" + comment.content + "'" + "</ul>" );				
+				// })
+			// console.log ("You are now on the HAUNTS#INDEX PAGE")
+			// });
+		// }
+	// 	});
+// }
 
 
