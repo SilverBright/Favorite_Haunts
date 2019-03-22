@@ -3,8 +3,7 @@ $(document).ready(() => {
 	console.log("The document is loaded and ready") 
 	console.log("The haunts.js file has loaded")
 	listenForGetHauntsClick()
-	// listenForNewHauntFormClick()
-
+	listenForSubmitButton()
 })
 
 //Event listener for clicking on 'display-ajax-haunts' link
@@ -117,9 +116,9 @@ Haunt.prototype.hauntHTML = function() {
 // Submit Haunts via AJAX
 
 // $(function(){
-// 	$("new_haunt.new_haunt").on("submit", function(event) {
-// 		// alert("You clicked submit")
-// 		// console.log(this)		
+// 	$("new_haunt").on("submit", function(event) {
+// 		alert("You clicked submit")
+// 		console.log(this)		
 // 		$.ajax({
 // 		type: 'post',
 // 		url: url,
@@ -147,17 +146,29 @@ Haunt.prototype.hauntHTML = function() {
 // 	})
 // }
 
-// function listenForFormSubmit() {
-// 	$('button')
-// }
 
 
+// $(document).ready(function() {
+//   $("#new_haunt.new_haunt").submit(function(event){  
+//        event.preventDefault();  
+//        console.log('submit button clicked')
+//     })  
+//   });
+
+
+
+function listenForSubmitButton() {
+	$("#new_haunt.new_haunt").submit(function(event){  
+       event.preventDefault();  
+       console.log('You clicked the submit button')
+    })  
+  };
 
 function postNewHauntForm() {
-		$("submit_ajax_haunt").on("submit", function(event) {
-		console.log('submit button clicked')
-
-		event.preventDefault()
+	$("new_haunt.new_haunt").submit(function(event) {
+		event.preventDefault();
+		console.log('You clicked the submit button')
+	
 		// $.ajax({
 		// 	type: "POST",
 		// 	url: this.action,
@@ -165,12 +176,12 @@ function postNewHauntForm() {
 		// 	success: function(resp){
 		// 	console.log(resp)
 
-			})
-			}
-// 		})
+		// 	})
+		// 	}
+		})
 		
-// 	})
-// }
+	};
+
 
 $(document).on("click","#new-ajax-haunt", function(event){
   $("div#new_form").show()

@@ -25,10 +25,10 @@ class HauntsController < ApplicationController
 	end
 
 	def show
-		@haunts = current_user.haunts.build
+		# @haunts = current_user.haunts.build
 		@haunt = Haunt.find(params[:id])
 		respond_to do |f|
-			f.html { render :show }
+			f.html { render :index }
 			f.json { render json: @haunt }	
 		end
 			end
