@@ -1,8 +1,14 @@
 <h3>Welcome: <%= current_user.email %> </h3>
 
-<h1>Haunt Directory</h1>
+<%= render 'haunts/new_ajax_form' %>
 
-<table>
+<!-- <h1>Haunt Directory</h1> -->
+
+
+
+
+
+<!-- <table>
   <%#= link_to 'See Haunts only in California', california_haunts_path %>
   <thead>
     <tr>
@@ -15,24 +21,24 @@
   </thead>
 
   <tbody>
-    <% @haunts.each do |haunt| %>
+    <%# @haunts.each do |haunt| %>
       <tr>
-        <td><%= haunt.name %></td> 
-        <td><%= haunt.city %></td> 
-        <td><%= haunt.state %></td> 
-        <td><%= haunt.description %></td> 
+        <td><%#= haunt.name %></td> 
+        <td><%#= haunt.city %></td> 
+        <td><%#= haunt.state %></td> 
+        <td><%#= haunt.description %></td> 
 
-        <td><%= link_to 'See Reviews', haunt_comments_path(haunt)  %></td>
-        <td><%= link_to 'Add A Review', new_haunt_comment_path(haunt) %></td>
+        <td><%#= link_to 'See Reviews', haunt_comments_path(haunt)  %></td>
+        <td><%#= link_to 'Add A Review', new_haunt_comment_path(haunt) %></td>
 
-        <!-- Hide edit and destroy options from other users' haunts -->
+        Hide edit and destroy options from other users' haunts -->
 
-        <% if haunt && haunt.user == current_user %>
+        <%# if haunt && haunt.user == current_user %>
 
-        <td><%= link_to 'Edit', edit_haunt_path(haunt) %></td>
-        <td><%= link_to 'Destroy', haunt, method: :delete, data: { confirm: 'Are you sure?! There is no going back! MWAHAHAHA!' } %></td>
-        <% end %>
+ <!--        <td><%#= link_to 'Edit', edit_haunt_path(haunt) %></td>
+        <td><%#= link_to 'Destroy', haunt, method: :delete, data: { confirm: 'Are you sure?! There is no going back! MWAHAHAHA!' } %></td>
+        <%# end %>
       </tr>
-    <% end %> 
+    <%# end %> 
   </tbody>
-</table> 
+</table>  --> 

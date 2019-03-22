@@ -1,6 +1,8 @@
 <h1>HAUNTS#SHOW PAGE</h1>
 
-<h2>If this is your Haunt, please review for any changes.</h2>
+
+
+<!-- <h2>If this is your Haunt, please review for any changes.</h2>
 <table>
  
   <thead>
@@ -15,31 +17,31 @@
 
   <tbody>
       <tr>
-        <td><%= @haunt.name %></td> 
+        <td><%#= @haunt.name %></td> 
         <td><%= @haunt.city %></td> 
         <td><%= @haunt.state %></td> 
         <td><%= @haunt.description %></td> 
 
-        <!-- Hide edit and destroy options from other users' haunts -->
+        Hide edit and destroy options from other users' haunts
 
-        <% if @haunt && @haunt.user == current_user %>
+        <%# if @haunt && @haunt.user == current_user %>
 
-          <td><%= link_to 'Edit', edit_haunt_path(@haunt.id) %></td>
-          <td><%= link_to 'Add A Review', new_haunt_comment_path(@haunt.id)  %></td>
-          <td><%= link_to 'Destroy', @haunt, method: :delete, data: { confirm: 'Are you sure?! There is no going back! Mwah ha haaaaahhh' } %></td>
+          <td><%#= link_to 'Edit', edit_haunt_path(@haunt.id) %></td>
+          <td><%#= link_to 'Add A Review', new_haunt_comment_path(@haunt.id)  %></td>
+          <td><%#= link_to 'Destroy', @haunt, method: :delete, data: { confirm: 'Are you sure?! There is no going back! Mwah ha haaaaahhh' } %></td>
 
-        <% end %>
+        <%# end %>
 
   </tbody>
 
-</table>
+</table> -->
 
-<div class="ajax-haunts">
-  <%= render 'new_haunt_form' %>
+<!-- <div class="ajax-haunts">
+  <%#= render 'new_haunt_form' %>
  show results here</div>
-<br>
+<br>  -->
 
 
-<br>
+
 
 
