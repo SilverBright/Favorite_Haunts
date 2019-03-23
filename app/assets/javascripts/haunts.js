@@ -98,7 +98,7 @@ $(function(){
       // url: $(this).attr('action'),
       url: this.action,
       data: $(this).serialize(),
-      // dataType: 'json',
+      dataType: 'json',
       success: function(response) {
         console.log("Here is the", response)
         	}
