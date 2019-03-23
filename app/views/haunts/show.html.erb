@@ -1,6 +1,16 @@
 <h1>HAUNTS#SHOW PAGE</h1>
 
-<li><%= @haunt.name %></li>
+<!-- <div id="display_new_ajax_haunt">Show New Haunt Here</div> -->
+
+
+
+
+<!-- <h1>'post' response from Ajax form submission</h1>
+
+
+ -->
+
+
 
 
 <!-- 
@@ -21,20 +31,20 @@
 
   <tbody>
       <tr>
-        <td><%= @haunt.name %></td> 
-        <td><%= @haunt.city %></td> 
-        <td><%= @haunt.state %></td> 
-        <td><%= @haunt.description %></td> 
+        <td><%#= @haunt.name %></td> 
+        <td><%#= @haunt.city %></td> 
+        <td><%#= @haunt.state %></td> 
+        <td><%#= @haunt.description %></td> 
 
         Hide edit and destroy options from other users' haunts
 
-        <% if @haunt && @haunt.user == current_user %>
+        <%# if @haunt && @haunt.user == current_user %>
 
-          <td><%= link_to 'Edit', edit_haunt_path(@haunt.id) %></td>
-          <td><%= link_to 'Add A Review', new_haunt_comment_path(@haunt.id)  %></td>
-          <td><%= link_to 'Destroy', @haunt, method: :delete, data: { confirm: 'Are you sure?! There is no going back! Mwah ha haaaaahhh' } %></td>
+          <td><%#= link_to 'Edit', edit_haunt_path(@haunt.id) %></td>
+          <td><%#= link_to 'Add A Review', new_haunt_comment_path(@haunt.id)  %></td>
+          <td><%#= link_to 'Destroy', @haunt, method: :delete, data: { confirm: 'Are you sure?! There is no going back! Mwah ha haaaaahhh' } %></td>
 
-        <% end %>
+        <%# end %>
 
   </tbody>
 

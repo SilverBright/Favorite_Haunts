@@ -3,7 +3,7 @@ $(document).ready(() => {
 	console.log("The document is loaded and ready") 
 	console.log("The haunts.js file has loaded")
 	listenForGetHauntsClick()
-	listenForSubmitButton()
+	// listenForSubmitButton()
 })
 
 //Event listener for clicking on 'display-ajax-haunts' link
@@ -12,7 +12,7 @@ function listenForGetHauntsClick() {
 		// Prevent the default function of the click event from happening
 		event.preventDefault()
 		// Display the ajax response on the haunts index page
-		history.pushState(null, null, "haunts")
+		// history.pushState(null, null, "haunts")
 		// Run the getHaunts ajax function below
 		getHaunts()
 	})
@@ -88,33 +88,30 @@ Haunt.prototype.hauntHTML = function() {
 
 // AJAX POST 
 
-function listenForSubmitButton(){
-	$("#new_haunt.new_haunt").submit(function(event){
-		event.preventDefault();
-		console.log('You clicked the submit button')
-		postNewAjaxHaunt()
+
+$(function(){
+  $("#new_haunt.new_haunt").on("submit", function(event){
+  	event.preventDefault();
+  	// event.stopPropagation()
+    $.ajax({
+      type: "POST",
+      // url: $(this).attr('action'),
+      url: this.action,
+      data: $(this).serialize(),
+      // dataType: 'json',
+      success: function(response) {
+        console.log(response)
+        	}
 		})
-	}
-
-
-function postNewAjaxHaunt(){
-	$.ajax({
-		type: 'post',
-		url: this.action,
-		data: $(this).serialize(),
-		dataType: 'json'
-		}).done( response => {
-			debugger 
-			// console.log("you got a response")
-		}
-	)
-}
-
-$(document).on("click","#new-ajax-haunt", function(event){
-  $("div#new_form").show()
-  event.preventDefault()
-  console.log("You clicked the 'add a haunt' button")
+	});
 });
+
+
+// $(document).on("click","#new-ajax-haunt", function(event){
+//   $("div#new_form").show()
+//   event.preventDefault()
+//   console.log("You clicked the 'add a haunt' button")
+// });
 
 
 // Display all Haunts under "div.haunts"
