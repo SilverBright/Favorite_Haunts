@@ -2,6 +2,7 @@
 $(document).ready(() => {
 	console.log("The document is loaded and ready") 
 	console.log("The haunts.js file has loaded")
+
 	listenForGetHauntsClick()
 })
 
@@ -33,7 +34,7 @@ function getHaunts() {
 			const newHauntHTML = newHaunt.hauntHTML()
 			// display the response on the DOM
 			document.getElementById('display-ajax-haunts').innerHTML += newHauntHTML			
-				})
+				});
 			});
 		}
 
@@ -46,7 +47,7 @@ class Haunt {
 		this.city = haunt.city
 		this.state = haunt.state
 		this.comments = haunt.comments
-	}
+	};
 }
 
 // Create a prototype of a Haunt to use as many times as you need
@@ -83,6 +84,7 @@ $(function(){
       data: $(this).serialize(),
       dataType: 'json',
       success: function(response) {
+      	document.getElementById('display-ajax-haunts').innerHTML = ""
    		$("#new_haunt.new_haunt").each (function() { this.reset(); });
         console.log("Here is the haunt you just submitted", response)
         // reuse the same loop from getHaunts() to display the haunt
