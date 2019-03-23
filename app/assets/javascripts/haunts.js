@@ -100,7 +100,7 @@ $(function(){
       data: $(this).serialize(),
       // dataType: 'json',
       success: function(response) {
-        console.log(response)
+        console.log("Here is the", response)
         	}
 		})
 	});

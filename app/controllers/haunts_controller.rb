@@ -1,16 +1,11 @@
 class HauntsController < ApplicationController
-	# create before action method for flash messages
 	before_action :user_permissions, only: [:edit, :update, :destroy]
 
 	def index
 		@haunts = Haunt.all
-		# @haunt = current_user.haunts.build
-		
-		# render json: @haunts
 		respond_to do |f|
 			f.html { render :index }
 			f.json { render json: @haunts }	
-
 		end
 	end
 
@@ -28,9 +23,12 @@ class HauntsController < ApplicationController
 	end
 
 	def create
-		# @haunts = current_user.haunts.build(haunt_params.merge(user_id: current_user.id))
 		@haunt = current_user.haunts.build(haunt_params.merge(user_id: current_user.id))
 		if @haunt.save
+		respond_to do |f|
+			f.html { render :edit }
+			f.json { render json: @haunt }	
+		end
 
 		end
 	end
