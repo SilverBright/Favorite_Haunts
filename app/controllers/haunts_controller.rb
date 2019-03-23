@@ -28,8 +28,7 @@ class HauntsController < ApplicationController
 		respond_to do |f|
 			f.html { render :edit }
 			f.json { render json: @haunt }	
-		end
-
+			end
 		end
 	end
 
@@ -51,8 +50,8 @@ class HauntsController < ApplicationController
   	end
 
 
-	private
 
+	private
 
 	def user_permissions
 		@haunt = Haunt.find(params[:id])
