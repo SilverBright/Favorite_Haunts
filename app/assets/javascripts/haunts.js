@@ -4,6 +4,7 @@ $(document).ready(() => {
 	console.log("The haunts.js file has loaded")
 	// run the function below
 	listenForGetHauntsClick();
+	createHaunt();
 });
 
 //Event listener function for clicking on 'get-ajax-haunts' link
@@ -53,7 +54,7 @@ class Haunt {
 
 // Create a prototype of a Haunt to save on memory, use as many times as you need
 Haunt.prototype.hauntHTML = function() {
-	console.log(`Here is a Haunt: ${this.name}`);
+	// console.log(`Here is a Haunt: ${this.name}`);
 	// loop through nested comments for each haunt
 	let hauntComments = this.comments.map(comment => {
 		return (`
@@ -76,7 +77,8 @@ Haunt.prototype.hauntHTML = function() {
 
 // AJAX POST REQUEST
 
-$(function() {
+// $(function() {
+function createHaunt() {	
   $("#new_haunt.new_haunt").on("submit", function(event){
   	event.preventDefault();
     $.ajax({
@@ -100,4 +102,4 @@ $(function() {
     // releases the submit button
     return false;
 	});
-});
+};

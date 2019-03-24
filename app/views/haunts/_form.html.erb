@@ -1,6 +1,6 @@
 <h2>Add A Haunt:</h2>
 
-<%= form_for(@haunt) do |f| %>
+<%= form_for [@haunt] do |f| %>
 <% if @haunt.errors.any? %>
     <% @haunt.errors.full_messages.each do |message| %>
       <li><%= message %></li>
@@ -20,7 +20,6 @@
   <%= f.label :description %>
   <%= f.text_area :description %>
   <br>
-
   <%= f.submit %>
 
 <% end %>

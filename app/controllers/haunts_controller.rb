@@ -24,6 +24,7 @@ class HauntsController < ApplicationController
 
 	def create
 		@haunt = current_user.haunts.build(haunt_params.merge(user_id: current_user.id))
+		# @comment = current_user.comments.create(content: comment_params["content"])
 		if @haunt.save
 		respond_to do |f|
 			f.html { render :edit }
