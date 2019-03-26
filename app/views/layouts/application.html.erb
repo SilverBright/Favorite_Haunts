@@ -27,12 +27,9 @@
       <%= link_to "Add A Haunt", new_haunt_path %> |
       <%= link_to "See All The Haunts in HTML", haunts_path %> |
       <%= link_to 'See Haunts only in California', california_haunts_path %>
-
       
       <h3>Welcome, <%= current_user.email %></h3>
    
-
-
     <% else %>
       <%= link_to "Sign up", new_user_registration_path  %> |
       <%= link_to "Login", new_user_session_path  %>

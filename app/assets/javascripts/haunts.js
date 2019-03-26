@@ -61,7 +61,7 @@ Haunt.prototype.hauntHTML = function() {
 			<p><b>A reviewer said:</b> <i>${comment.content}</i></p>
 		`)
 	}).join('');
-	console.log("Here is a Comment:", hauntComments )
+	// console.log("Here is a Comment:", hauntComments )
 		return (`
 			<div>
 				<ol>
@@ -77,23 +77,30 @@ Haunt.prototype.hauntHTML = function() {
 
 // AJAX POST REQUEST
 
-// $(function() {
 function createHaunt() {	
+	// JQuery selector: Pass in the form id that, on 'submit', will start a function event
   $("#new_haunt.new_haunt").on("submit", function(event){
+  	// Prevent the default function of the click event from happening
   	event.preventDefault();
+  	// Start the AJAX POST request
     $.ajax({
       type: "POST",
-      // this = new_haunt.new_haunt 
+      // The url is the location of the script that the form data will be sent to
+      // Fetch the action attribute from the form 
       url: this.action,
-      // The serialize() method creates a URL encoded text string by serializing form values.
+      // Encode the set of form elements as a string for submission
       data: $(this).serialize(),
+      // Create the datatype as JSON
       dataType: 'json',
+      // A success callback is invoked upon successful completion of an Ajax request
       success: function(response) {
+      	//clears the DOM when the submit button is clicked
       	document.getElementById('display-ajax-haunts').innerHTML = ""
-      	// clear the form after submit
+      	// clears the form when the submit button is clicked
    		$("#new_haunt.new_haunt").each (function() { this.reset(); });
         console.log("Here is the haunt you just submitted", response);
-        // reuse the same loop from getHaunts() to display the haunt, as a single haunt
+        // Reuse the same loop from getHaunts() function to display a single haunt on the DOM
+        // This code follow's Brad's example
 	    const newHaunt = new Haunt(response);
 	    const newHauntHTML = newHaunt.hauntHTML();
 	    document.getElementById("display-ajax-haunts").innerHTML += newHauntHTML

@@ -8,8 +8,6 @@ authenticated :user do
     root 'devise/sessions#new'
   end
 
-
-
   resources :haunts do 
     collection do
       get :california

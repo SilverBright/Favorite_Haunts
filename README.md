@@ -30,9 +30,9 @@ rails s
 ```
 to preview the application in your web browser: http://localhost:3000/
 
-You may use your Facebook account to login via OAuth, or you are welcome to sign up by using your email address to create a new account.
+You may use your Facebook account to login via OAuth, or you are welcome to sign up by using your email address to create a new account.  For the purposes of testing the application, you can create an account with a fake email address.  
 
-Your email will be your username.
+Your email address will be your username when you login.
 
 After account creation and login, users can add and read haunted locations and comments.
 
@@ -40,7 +40,7 @@ Enjoy!
 
 ## Instructional Video
 
-A video will be provided at project completion. 
+https://www.youtube.com/watch?v=r4p9JgMZnNA
 
 ## Contributing
 
