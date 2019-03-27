@@ -1,6 +1,5 @@
 $(document).ready(() => {
 	console.log("The document is loaded and ready") 
-	console.log("The haunts.js file has loaded")
 	listenForGetHauntsClick();
 	createHaunt();
 });
@@ -41,29 +40,24 @@ class Haunt {
 
 Haunt.prototype.hauntHTML = function() {
 	// console.log(`Here is a Haunt: ${this.name}`);
-	let hauntComments = this.comments.map(comment => {
+	const hauntComments = this.comments.map(comment => {
 		return (`
-			<p><b>A reviewer said:</b> <i>${comment.content}</i></p>
+			<li class="haunt-comment"><b>A reviewer said:</b> <i>${comment.content}</i></li>
 		`)
 	}).join('');
-	// console.log("Here is a Comment:", hauntComments )
-	return (`
-		<div>
-			<ol>
-				</li>${this.id}: <b>${this.name}</b>, ${this.city}, ${this.state}</li>
-				<br>
-				</li>${this.description}</li>
-				<br>
+		return (`
+			<li>
+				<p><b>${this.name}</b>, ${this.city}, ${this.state}</p>	
+				<p>${this.description}</p>				
 				<ul>${hauntComments}</ul>
-			</ol>
-		</div>
+			</li>
 	`) 
 };
 
 // AJAX POST REQUEST
 
 function createHaunt() {	
-  $("#new_haunt.new_haunt").on("submit", function(event){
+  $("#new_haunt").on("submit", function(event){
   	event.preventDefault();
     $.ajax({
       type: "POST",
