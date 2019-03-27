@@ -19,7 +19,7 @@ function getHaunts() {
 	}).done( haunt => {
 		// console.log("Here is the array of Haunts:", response);
 		document.getElementById('display-ajax-haunts').innerHTML = ""
-		response.map( haunt => {
+		haunt.map( haunt => {
 			const newHaunt = new Haunt(haunt);
 			const newHauntHTML = newHaunt.hauntHTML();
 			document.getElementById('display-ajax-haunts').innerHTML += newHauntHTML			
@@ -63,10 +63,10 @@ function createHaunt() {
 	      	url: this.action,
 	      	data: $(this).serialize(),
 	      	dataType: 'json',
-	      	success: function(response) {
+	      	success: function(haunt) {
 	      		document.getElementById('display-ajax-haunts').innerHTML = ""
 	   			$("#new_haunt").each (function() { this.reset(); });
-		    	const newHaunt = new Haunt(response);
+		    	const newHaunt = new Haunt(haunt);
 		    	const newHauntHTML = newHaunt.hauntHTML();
 		    	document.getElementById("display-ajax-haunts").innerHTML += newHauntHTML
 	        	}
