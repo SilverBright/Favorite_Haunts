@@ -1,7 +1,8 @@
 $(document).ready(() => {
 	console.log("The document is loaded and ready") 
 	listenForGetHauntsClick();
-	createHaunt();
+	listenForSortedHaunts() // get haunt by ajax button
+	createHaunt(); // ajax post function
 });
 
 function listenForGetHauntsClick() {
@@ -11,15 +12,65 @@ function listenForGetHauntsClick() {
 	});
 }
 
+function listenForSortedHaunts() {
+	$('button#sort-by-alphabet-haunts').on('click', event => {
+		event.preventDefault();
+		sortedHaunts();
+	});
+}
+
+function sortedHaunts() {
+	$.ajax({
+		url: 'http://localhost:3000/haunts',
+		method: 'get',
+		dataType: 'json'
+	}).done(haunts => {
+		// console.log("Here is the array of Haunts:", response);
+		document.getElementById('display-ajax-haunts').innerHTML = ""
+		//sort by state
+		haunts.sort(function(a, b) {
+		// console.log(a, b)
+		  var stateA = a.state.toUpperCase(); // ignore upper and lowercase 
+		  var stateB = b.state.toUpperCase(); 
+		  var nameA = a.name.toUpperCase();
+		  var nameB = b.name.toUpperCase();
+
+		  //compare states
+		  if (stateA < stateB) {
+		    return -1; 
+		  }
+		  if (stateA > stateB) {
+		    return 1;
+		  }
+		  //compare names of haunts
+		  if (nameA < nameB) {
+		    return -1;
+		  }
+		  if (nameA > nameB) {
+		    return 1;
+		  }
+
+		  return 0;
+		});
+
+		haunts.map(haunt => {
+			const newHaunt = new Haunt(haunt);
+			const newHauntHTML = newHaunt.hauntHTML();
+			document.getElementById('display-ajax-haunts').innerHTML += newHauntHTML			
+		});
+	});	
+}
+
+
 function getHaunts() {
 	$.ajax({
 		url: 'http://localhost:3000/haunts',
 		method: 'get',
 		dataType: 'json'
-	}).done( haunt => {
+	}).done( haunts => {
 		// console.log("Here is the array of Haunts:", response);
 		document.getElementById('display-ajax-haunts').innerHTML = ""
-		haunt.map( haunt => {
+		haunts.map( haunt => {
 			const newHaunt = new Haunt(haunt);
 			const newHauntHTML = newHaunt.hauntHTML();
 			document.getElementById('display-ajax-haunts').innerHTML += newHauntHTML			
