@@ -13,7 +13,7 @@ function listenForGetHauntsClick() {
 }
 
 function listenForSortedHaunts() {
-	$('button#sort-by-alphabet-haunts').on('click', event => {
+	$('button#sort-by-state-then-name').on('click', event => {
 		event.preventDefault();
 		sortedHaunts();
 	});
