@@ -27,22 +27,29 @@ function sortedHaunts() {
 	}).done(haunts => {
 		// console.log("Here is the array of Haunts:", response);
 		document.getElementById('display-ajax-haunts').innerHTML = ""
-		//sort by state
+		//sort by State
 		haunts.sort(function(a, b) {
 		// console.log(a, b)
+
+		// assign States to variables a & b to use for comparison
 		  var stateA = a.state.toUpperCase(); // ignore upper and lowercase 
-		  var stateB = b.state.toUpperCase(); 
+		  var stateB = b.state.toUpperCase();
+
+		 // assign Names to variables a & b to use for comparison
 		  var nameA = a.name.toUpperCase();
 		  var nameB = b.name.toUpperCase();
 
-		  //compare states
+		  //compare State variables
 		  if (stateA < stateB) {
+		  	// return less than 0 if a is less than b
 		    return -1; 
 		  }
 		  if (stateA > stateB) {
+		  	// return greater than 0 if a is greater than b
 		    return 1;
 		  }
-		  //compare names of haunts
+
+		  //compare Name variables
 		  if (nameA < nameB) {
 		    return -1;
 		  }
@@ -50,6 +57,7 @@ function sortedHaunts() {
 		    return 1;
 		  }
 
+		  // Return 0 if a equals b
 		  return 0;
 		});
 
@@ -60,7 +68,6 @@ function sortedHaunts() {
 		});
 	});	
 }
-
 
 function getHaunts() {
 	$.ajax({
