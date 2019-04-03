@@ -32,12 +32,8 @@ function sortedHaunts() {
 		// console.log(a, b)
 
 		// assign States to variables a & b to use for comparison
-		  var stateA = a.state.toUpperCase(); // ignore upper and lowercase 
-		  var stateB = b.state.toUpperCase();
-
-		 // assign Names to variables a & b to use for comparison
-		  var nameA = a.name.toUpperCase();
-		  var nameB = b.name.toUpperCase();
+		  const stateA = a.state.toUpperCase(); // ignore upper and lowercase 
+		  const stateB = b.state.toUpperCase();
 
 		  //compare State variables
 		  if (stateA < stateB) {
@@ -48,6 +44,10 @@ function sortedHaunts() {
 		  	// return greater than 0 if a is greater than b
 		    return 1;
 		  }
+
+		  // assign Names to variables a & b to use for comparison
+		  const nameA = a.name.toUpperCase();
+		  const nameB = b.name.toUpperCase();
 
 		  //compare Name variables
 		  if (nameA < nameB) {
@@ -75,7 +75,7 @@ function getHaunts() {
 		method: 'get',
 		dataType: 'json'
 	}).done( haunts => {
-		// console.log("Here is the array of Haunts:", response);
+		console.log("Here is the array of Haunts:", haunts);
 		document.getElementById('display-ajax-haunts').innerHTML = ""
 		haunts.map( haunt => {
 			const newHaunt = new Haunt(haunt);
@@ -92,20 +92,28 @@ class Haunt {
 		this.description = haunt.description
 		this.city = haunt.city
 		this.state = haunt.state
+		this.users = haunt.users
 		this.comments = haunt.comments
 	};
 }
 
 Haunt.prototype.hauntHTML = function() {
+	const hauntUsers = this.users.map(user => {
+		return (`
+			<li class="haunt-user">${user.email}said:</li>
+			`)
+		});
+
 	const hauntComments = this.comments.map(comment => {
 		return (`
-			<li class="haunt-comment"><b>A reviewer said:</b> <i>${comment.content}</i></li>
+			<li class="haunt-comment"><b><i>${comment.content}</i></li>
 		`)
 	}).join('');
 		return (`
 			<li>
 				<p><b>${this.name}</b>, ${this.city}, ${this.state}</p>	
-				<p>${this.description}</p>				
+				<p>${this.description}</p>	
+				<ul>${hauntUsers}</ul>
 				<ul>${hauntComments}</ul>
 			</li>
 	`) 
